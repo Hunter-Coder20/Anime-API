@@ -20,15 +20,6 @@
             <a href="#" class="nav-tab active">Movies</a>
             <a href="#" class="nav-tab">Series</a>
         </nav>
-        <div>
-            <label for="sortOptions">Sort by:</label>
-            <select id="sortOptions">
-                <option value="title">Title</option>
-                <option value="rating">Rating</option>
-            </select>
-        </div>
-        <div id="animeGrid">
-            <script src="script.js"></script>
         </div>
         <div class="search-bar">
             <input type="text" class="search-input" placeholder="Type to search...">
@@ -80,7 +71,16 @@
                     <i class="fas fa-clock"></i> Sign In
                 </a>
             </div>
-
+            <div class="sort-controls">
+                <label for="sortOptions">Sort By:</label>
+                <select id="sortOptions">
+                    <option value="">-- Select --</option>
+                    <option value="title-asc">Title: A → Z</option>
+                    <option value="title-desc">Title: Z → A</option>
+                    <option value="rating-desc">Rating: High → Low</option>
+                    <option value="rating-asc">Rating: Low → High</option>
+                </select>
+            </div>
         </aside>
         <main class="content">
             <div class="hero-section">
@@ -110,7 +110,6 @@
             <section class="section">
                 <h2 class="section-title">Top Rated Anime</h2>
                 <div class="anime-grid" id="animeGrid">
-                    <!-- Anime cards will be loaded via API-->
                 </div>
             </section>
         </main>
