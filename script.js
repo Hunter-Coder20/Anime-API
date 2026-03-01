@@ -12,6 +12,40 @@ async function loadAnime() {
     const grid = document.getElementById("animeGrid");
     grid.innerHTML = "";
 
+    const sortOptions = document.getElementById('sortOptions');
+
+    function sortData() {
+        const selectedOption = sortOptions.value;
+
+        if (selectedOption === 'title') {
+            data.data.sort((a, b) => a.title.localeCompare(b.title));
+        } else if (selectedOption === 'rating') {
+            data.data.sort((a, b) => b.score - a.score); // Example for sorting by rating
+        }
+
+        displayAnime(data.data);
+    }
+
+    function displayAnime(animeList) {
+        const grid = document.getElementById('animeGrid');
+        grid.innerHTML = '';
+        animeList.forEach(anime => {
+            const animeCard = `
+                <div class="anime-card">
+                    <h3>${anime.title}</h3>
+                    <img src="${anime.image_url}" alt="${anime.title}">
+                    <p>Genres: ${anime.genres.map(genre => genre.name).join(', ')}</p>
+                </div>
+            `;
+            grid.innerHTML += animeCard;
+        });
+    }
+
+    sortData();
+
+    sortOptions.addEventListener('change', sortData);
+}
+
     data.data.forEach((anime) => {
         const genres = anime.genres
             ? anime.genres.map((g) => g.name).join(",")
